@@ -19,9 +19,9 @@ Start the program. All dependencies will be automatically downloaded
 
 `npm start`
 
-Then visit http://localhost:31313 in your browser of choice. You might get an error message:
+Then visit http://localhost:8000 in your browser of choice. You might get an error message:
 
-`geth --rpc --rpccorsdomain "http://localhost:31313"`
+`geth --rpc --rpccorsdomain "http://localhost:8000"`
 
 Install [gpuffs](https://github.com/puffscoin/go-puffscoin)if you don't already have it installed, then run the above command.
 
