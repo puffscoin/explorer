@@ -10,7 +10,7 @@ angular.module('puffsExplorer')
         if($scope.addressId!==undefined) {
           getAddressInfos().then(function(result){
             $scope.balance = result.balance;
-            $scope.balanceInEther = result.balanceInEther;
+            $scope.balanceInPuffs = result.balanceInPuffs;
           });
         }
 
@@ -18,11 +18,11 @@ angular.module('puffsExplorer')
         function getAddressInfos(){
           var deferred = $q.defer();
 
-          web3.eth.getBalance($scope.addressId,function(error, result) {
+          web3.puffs.getBalance($scope.addressId,function(error, result) {
             if(!error) {
                 deferred.resolve({
                   balance: result,
-                  balanceInEther: web3.fromWei(result, 'ether')
+                  balanceInPuffs: web3.fromWei(result, 'puffs')
                 });
             } else {
                 deferred.reject(error);
