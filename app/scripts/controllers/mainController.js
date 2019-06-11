@@ -3,7 +3,7 @@ angular.module('puffsExplorer')
 
 	var web3 = $rootScope.web3;
 	var maxBlocks = 50; // TODO: into setting file or user select
-	var blockNum = $scope.blockNum = parseInt(web3.eth.blockNumber, 10);
+	var blockNum = $scope.blockNum = parseInt(web3.puffs.blockNumber, 10);
 	if (maxBlocks > blockNum) {
 	    maxBlocks = blockNum + 1;
 	}
@@ -11,11 +11,11 @@ angular.module('puffsExplorer')
 	// get latest 50 blocks
 	$scope.blocks = [];
 	for (var i = 0; i < maxBlocks; ++i) {
-	    $scope.blocks.push(web3.eth.getBlock(blockNum - i));
+	    $scope.blocks.push(web3.puffs.getBlock(blockNum - i));
 	}
 	
         $scope.processRequest = function() {
-             var requestStr = $scope.ethRequest.split('0x').join('');
+             var requestStr = $scope.puffsRequest.split('0x').join('');
 
             if (requestStr.length === 40)
               return goToAddrInfos(requestStr)
