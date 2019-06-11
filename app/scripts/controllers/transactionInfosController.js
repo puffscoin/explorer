@@ -12,7 +12,7 @@ angular.module('puffsExplorer')
                 getTransactionInfos()
                     .then(function(result){
                         //TODO Refactor this logic, asynchron calls + services....
-                        var number = web3.eth.blockNumber;
+                        var number = web3.puffs.blockNumber;
 
                     $scope.result = result;
 
@@ -36,7 +36,7 @@ angular.module('puffsExplorer')
                     $scope.nonce = result.nonce;
                     $scope.to = result.to;
                     $scope.transactionIndex = result.transactionIndex;
-                    $scope.ethValue = result.value.c[0] / 10000; 
+                    $scope.puffsValue = result.value.c[0] / 10000; 
                     $scope.txprice = (result.gas * result.gasPrice)/1000000000000000000 + " PUFFS";
                     if($scope.blockNumber!==undefined){
                         $scope.conf = number - $scope.blockNumber;
@@ -46,7 +46,7 @@ angular.module('puffsExplorer')
                     }
                         //TODO Refactor this logic, asynchron calls + services....
                     if($scope.blockNumber!==undefined){
-                        var info = web3.eth.getBlock($scope.blockNumber);
+                        var info = web3.puffs.getBlock($scope.blockNumber);
                         if(info!==undefined){
                             $scope.time = info.timestamp;
                         }
@@ -66,7 +66,7 @@ angular.module('puffsExplorer')
             function getTransactionInfos(){
                 var deferred = $q.defer();
 
-                web3.eth.getTransaction($scope.txId,function(error, result) {
+                web3.puffs.getTransaction($scope.txId,function(error, result) {
                     if(!error){
                         deferred.resolve(result);
                     }
